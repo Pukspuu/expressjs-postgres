@@ -1,10 +1,7 @@
-import bodyParser from "body-parser";
+
 import express from "express";
 import cors from "cors";
 import pg from "pg";
-
-
-
 
 // Connect to the database using the DATABASE_URL environment
 //   variable injected by Railway
@@ -14,13 +11,11 @@ const app = express();
 const port = process.env.PORT || 3333;
 
 app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.raw({ type: "application/vnd.custom-type" }));
-app.use(bodyParser.text({ type: "text/html" }));
+app.use(express.json());
 
 app.get("/", async (req, res) => {
   // const { rows } = await pool.query("SELECT NOW()");
-  res.send(JSON.stringify({text:"todo1"}));
+  res.send(JSON.stringify({ text: "todo1" }));
 });
 
 app.listen(port, () => {
